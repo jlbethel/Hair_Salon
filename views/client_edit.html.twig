@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Edit Client</title>
+    </head>
+    <body>
+        <h1>Update {{ clients.getClientName }}'s name</h1>
+
+        <form action="/clients/{{ clients.getId }}" method="post">
+            <input name="_method" type="hidden" value="patch">
+
+            <label for="client_name">Change client's name:</label>
+            <input id="client_name" name="client_name" type="text">
+
+            <button type="submit">Update</button>
+        </form>
+
+        <p><a href="/">Home</a></p>
+    </body>
+</html>

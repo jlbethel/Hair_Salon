@@ -17,6 +17,10 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
+    //Configuration to allow _method input to work
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
     //Set path for Twig
     $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'
     ));
@@ -58,14 +62,37 @@
     //Clear all clients from stylist page and return home
     $app->post("/delete_clients", function() use ($app) {
         Client::deleteAll();
-        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getALL()));
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    //Path from stylist page to edit page
+    //Path from stylist page to stylist edit page
     $app->get("/stylists/{id}/edit", function($id) use ($app) {
-    $stylist = Category::find($id);
-    return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
-});
+        $stylist = Stylist::find($id);
+        return $app['twig']->render('stylist_edit.html.twig', array('stylists' => $stylist));
+    });
+
+    //Route to allow the stylist update to work
+    $app->patch("/stylists/{id}", function($id) use ($app) {
+        $stylist_name = $_POST['stylist_name'];
+        $stylist = Stylist::find($id);
+        $stylist->update($stylist_name);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
+    //Path from stylist page to client edit page
+    $app->get("/clients/{id}/edit", function($id) use ($app) {
+        $client = Client::find($id);
+        return $app['twig']->render('client_edit.html.twig', array('clients' => $client));
+    });
+
+    //Route to allow the client update to work
+    $app->patch("/clients/{id}", function($id) use ($app) {
+        $client_name = $_POST['client_name'];
+        $client = Client::find($id);
+        $client->update($client_name);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
 
     return $app;
  ?>
