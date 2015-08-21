@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Edit Stylist</title>
+    </head>
+    <body>
+        <h1>Update {{ stylist.getName }}'s name</h1>
+
+<form action="/stylists/{{ stylists.getId }}" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="stylist_name">Change stylist name:</label>
+  <input id="stylist_name" name="stylist_name" type="text">
+
+  <button type="submit">Update</button>
+</form>
+    </body>
+</html>

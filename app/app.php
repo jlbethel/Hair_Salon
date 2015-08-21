@@ -55,11 +55,17 @@
         return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => Client::getAll()));
     });
 
-    //Clear all clients from stylist page
+    //Clear all clients from stylist page and return home
     $app->post("/delete_clients", function() use ($app) {
         Client::deleteAll();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getALL()));
     });
+
+    //Path from stylist page to edit page
+    $app->get("/stylists/{id}/edit", function($id) use ($app) {
+    $stylist = Category::find($id);
+    return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
+});
 
     return $app;
  ?>
