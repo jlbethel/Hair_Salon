@@ -5,6 +5,7 @@
     */
 
     require_once "src/Client.php";
+    require_once "src/Stylist.php";
 
     $server = 'mysql:host=localhost;dbname=hair_salon_test';
     $username = 'root';
@@ -13,6 +14,11 @@
 
     class ClientTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Client::deleteAll();
+        }
+
         function test_getClientName()
         {
             //Arrange
