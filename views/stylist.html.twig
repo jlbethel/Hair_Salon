@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Stylist</title>
+    </head>
+    <body>
+        <h1>{{ stylist.getStylistName }}</h1>
+
+        {% if clients is not empty %}
+            <p>Here are {{ stylist.getStylistName }}'s clients:</p>
+            <ul>
+                {% for client in clients %}
+                    <li><a href="/clients/{{ client.getId }}">{ client.getClientName }</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>Add a client:</p>
+
+        <form action="/clients" method="post">
+            <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId }}">
+            <label for="client_name">Add client:</label>
+            <input id="client_name" name="client_name" type="text">
+
+            <button type='submit'>Add Client</button>
+    </body>
+</html>

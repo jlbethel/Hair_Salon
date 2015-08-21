@@ -26,7 +26,7 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    //Post user stylists input and post to homepage
+    //Take user stylists input and post to homepage
     $app->post("/stylists", function() use ($app) {
         $stylist = new Stylist($_POST['stylist_name']);
         $stylist->save();
