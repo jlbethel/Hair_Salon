@@ -38,7 +38,7 @@
            $result = $test_Stylist->getId();
 
            //Arrange
-           $this->assertEquals($test_Stylist, $result[0]);
+           $this->assertEquals(true, is_numeric($result));
        }
    }
 
