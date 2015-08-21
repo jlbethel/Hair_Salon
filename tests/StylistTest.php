@@ -135,6 +135,25 @@
            $this->assertEquals("Araya Stark", $test_stylist->getStylistName());
        }
 
+       function test_Delete()
+       {
+            //Arrange
+            $stylist_name = "Big Bird";
+            $id = null;
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist-> save();
+
+            $stylist_name2 = "Araya Stark";
+            $test_stylist2 = new Stylist($stylist_name2);
+            $test_stylist2-> save();
+
+            //Act
+            $test_category->delete();
+
+            //Assert
+            $this->assertEquals([$test_stylist2], Stylist::getAll());  
+       }
+
 
 
    }
