@@ -17,6 +17,28 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
+    //Set path for Twig
+    $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'
+    ));
+
+    //Path to the homepage
+    $app->get("/", function() use ($app) {
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    //Post user stylists input and post to homepage
+    $app->post("/stylists", function() use ($app) {
+        $stylist = new Stylist($_POST['stylist_name']);
+        $stylist->save();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    //Clear all stylists from homepage
+    $app->post("/delete_stylists", function() use ($app) {
+        Stylist::deleteAll();
+        $stylists = [];
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylist));
+    });
 
 
     return $app;

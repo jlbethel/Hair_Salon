@@ -4,7 +4,27 @@
     </head>
     <body>
         <h1> Welcome to the Salon Database </h1>
-        
 
+        <p>Add a new stylist:</p>
+
+        <form action="/stylists" method="post">
+            <label for="stylist_name">Stylist name:</label>
+            <input id="stylist_name" name="stylist_name" type="text">
+
+            <button type="submit">Add Stylist</button>
+        </form>
+
+        {% if stylists is not empty %}
+            <ul>
+                {% for stylist in stylists %}
+                    <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName}}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>There are no stylists yet!</p>
+        {% endif %}
+
+        <form action="/delete_stylists" method="post">
+            <button type="submit">Clear All Stylists</button>
     </body>
 </html>
