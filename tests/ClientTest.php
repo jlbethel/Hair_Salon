@@ -13,6 +13,17 @@
 
     class ClientTest extend PHPUnit_Framework_TestCase
     {
-        
+        function test_getClientName()
+        {
+            //Arrange
+            $client_name = "Harry Potter"
+            $test_client = new Client($client_name);
+
+            //Act
+            $result = $test_client->getClientName();
+
+            //Assert
+            $this->assertEquals($client_name, $result);
+        }
     }
  ?>

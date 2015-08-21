@@ -22,10 +22,10 @@
        {
            //Arrange
            $stylist_name = "Big Bird";
-           $test_Stylist = new Stylist($stylist_name);
+           $test_stylist = new Stylist($stylist_name);
 
            //Act
-           $result = $test_Stylist->getStylistName();
+           $result = $test_stylist->getStylistName();
 
            //Assert
            $this->assertEquals($stylist_name, $result);
