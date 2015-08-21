@@ -34,7 +34,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO clients (client_name) VALUES ('{$this->getClientName()}')");
+            $GLOBALS['DB']->exec("INSERT INTO clients (client_name, stylist_id) VALUES ('{$this->getClientName()}', '{$this->getStylistId()}')");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -45,7 +45,8 @@
             foreach ($returned_clients as $client) {
                 $client_name = $client['client_name'];
                 $id = $client['id'];
-                $new_client = new Client($client_name, $id);
+                $stylist_name = $client['client_id'];
+                $new_client = new Client($client_name, $id, $client_id);
                 array_push($clients, $new_client);
             }
             return $clients;
