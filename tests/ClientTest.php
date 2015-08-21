@@ -25,5 +25,37 @@
             //Assert
             $this->assertEquals($client_name, $result);
         }
+
+        function test_save()
+        {
+            //Arrange
+            $client_name = "Harry Potter";
+            $test_client = new Client($client_name);
+            $test_client->save();
+
+            //Act
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals($test_stylist, $result[0]);
+        }
+
+        static function test_getAll()
+        {
+            //Arrange
+            $client_name = "Harry Potter";
+            $test_client = new Client($client_name);
+            $test_client->save();
+
+            $client_name2 = "Spock";
+            $test_client2 = new Client($client_name2);
+            $test_client->save();
+
+            //Act
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
     }
  ?>
