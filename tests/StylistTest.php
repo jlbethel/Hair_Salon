@@ -95,7 +95,25 @@
            $this->assertEquals([], $result);
 
        }
+
+       function test_find()
+       {
+           //Arrange
+           $stylist_name = "Big Bird";
+           $stylist_name2 = "Araya Stark";
+           $test_stylist = new Stylist($stylist_name);
+           $test_stylist-> save();
+           $test_stylist2 = new Stylist($stylist_name2);
+           $test_stylist2-> save();
+
+           //Act
+           $result = Stylist::find($test_stylist->getId());
+
+           //Assert
+           $this->assertEquals($test_stylist, $result);
+       }
+
+
+
    }
-
-
  ?>
