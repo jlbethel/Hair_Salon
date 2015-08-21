@@ -9,5 +9,15 @@
             $this->client_name = $client_name;
             $this->id = $id;
         }
+
+        function setClientName($new_name)
+        {
+            $this->client_name = (string) $new_name;
+        }
+
+        function getClientName()
+        {
+            return $this->client_name;
+        }
     }
  ?>

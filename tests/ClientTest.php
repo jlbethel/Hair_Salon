@@ -11,12 +11,12 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    class ClientTest extend PHPUnit_Framework_TestCase
+    class ClientTest extends PHPUnit_Framework_TestCase
     {
         function test_getClientName()
         {
             //Arrange
-            $client_name = "Harry Potter"
+            $client_name = "Harry Potter";
             $test_client = new Client($client_name);
 
             //Act
