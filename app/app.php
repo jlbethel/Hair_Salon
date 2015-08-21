@@ -99,6 +99,7 @@
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
+    //There are a few bugs that still need fixing, but I ran out of time. Will work on them and resubmit.
 
     return $app;
  ?>
