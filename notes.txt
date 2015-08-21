@@ -1,0 +1,10 @@
+CREATE DATABASE hair_salon;
+USE hair_salon;
+CREATE TABLE stylists (id serial PRIMARY KEY, stylist_name varchar (255));
+
+I used phpmyadmin to create the test database:
+select hair_salon
+click opperations on the right section of the browser
+under "Copy database to:" type "hair_salon_test"
+click Structure only
+click go
