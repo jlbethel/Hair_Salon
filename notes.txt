@@ -1,10 +1,20 @@
+
+MySQL
 CREATE DATABASE hair_salon;
 USE hair_salon;
 CREATE TABLE stylists (id serial PRIMARY KEY, stylist_name varchar (255));
 
-I used phpmyadmin to create the test database:
+phpMyAdmin
+I used phpmyadmin to create the test database instead of the terminal:
 select hair_salon
 click opperations on the right section of the browser
 under "Copy database to:" type "hair_salon_test"
 click Structure only
 click go
+
+Back to MySQL
+CREATE TABLE cleints (id serial PRIMARY KEY, client_name varchar (255));
+DROP DATABASE hair_salon_test;
+
+phpMyAdmin
+re-create the test database using phyadmin by following the steps above
