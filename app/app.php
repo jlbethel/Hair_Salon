@@ -37,7 +37,13 @@
     $app->post("/delete_stylists", function() use ($app) {
         Stylist::deleteAll();
         $stylists = [];
-        return $app['twig']->render('index.html.twig', array('stylists' => $stylist));
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
+    });
+
+    //Path from stylist links on homepage to stylist.html.twig
+    $app->get("/stylists/{id}", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
     });
 
 
