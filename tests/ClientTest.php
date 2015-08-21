@@ -17,13 +17,20 @@
         protected function tearDown()
         {
             Client::deleteAll();
+            Stylist::deleteAll();
         }
 
         function test_getClientName()
         {
             //Arrange
+            $stylist_name = "Big Bird";
+            $id = null;
+            $test_stylist = new Stylist($stylist_name, $id);
+            $test_stylist->save();
+
             $client_name = "Harry Potter";
-            $test_client = new Client($client_name);
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($client_name, $id, $stylist_id);
 
             //Act
             $result = $test_client->getClientName();
@@ -37,7 +44,7 @@
             //Arrange
             $stylist_name = "Big Bird";
             $id = null;
-            $test_stylist = new Stylist($slient_name, $id);
+            $test_stylist = new Stylist($stylist_name, $id);
             $test_stylist->save();
 
             $client_name = "Harry Potter";
@@ -46,10 +53,10 @@
             $test_client->save();
 
             //Act
-            $result = $test_Client->getId();
+            $result = $test_client->getId();
 
             //Assert
-            $this->assertEquals(1. $result);
+            $this->assertEquals(true, is_numeric($result));
         }
 
         function test_getCategoryId()
@@ -84,20 +91,18 @@
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($client_name, $id, $stylist_id);
-            $test_client->save();
-
 
             //Act
-            $result = Client::getAll();
+            $test_client->save();
 
             //Assert
+            $result = Client::getAll();
             $this->assertEquals($test_client, $result[0]);
         }
 
         function test_getAll()
         {
             //Arrange
-            /Arrange
             $stylist_name = "Big Bird";
             $id = null;
             $test_stylist = new Stylist($stylist_name, $id);
@@ -107,6 +112,10 @@
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($client_name, $id, $stylist_id);
             $test_client->save();
+
+            $client_name2 = "Spock";
+            $test_client2 = new Client($client_name2, $id, $stylist_id);
+            $test_client2->save();
 
             //Act
             $result = Client::getAll();
@@ -118,7 +127,6 @@
         function test_deleteAll()
         {
             //Arrange
-            /Arrange
             $stylist_name = "Big Bird";
             $id = null;
             $test_stylist = new Stylist($stylist_name, $id);
@@ -136,6 +144,30 @@
 
             //Assert
             $this->assertEquals([], $result);
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $stylist_name = "Big Bird";
+            $id = null;
+            $test_stylist = new Stylist($stylist_name, $id);
+            $test_stylist->save();
+
+            $client_name = "Harry Potter";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client->save();
+
+            $client_name2 = "Spock";
+            $test_client2 = new Client($client_name2, $id, $stylist_id);
+            $test_client2->save();
+
+            //Act
+            $result = Client::find($test_client-> getId());
+
+            //Assert
+            $this->assertEquals($test_client, $result);
         }
     }
  ?>
