@@ -6,15 +6,14 @@
         <h1>{{ stylist.getStylistName }}</h1>
 
         {% if clients is not empty %}
-            <p>Here are {{ stylist.getStylistName }}'s clients:</p>
+            <p>Here are {{ stylist.getStylistName }}'s clients, click on a client to edit:</p>
             <ul>
                 {% for client in clients %}
-                    <li><a href="/clients/{{ client.getId }}">{ client.getClientName }</a></li>
+                    <li><a href="/clients/{{ client.getId }}"> {{ client.getClientName }} </a></li>
                 {% endfor %}
             </ul>
         {% endif %}
 
-        <p>Add a client:</p>
 
         <form action="/clients" method="post">
             <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId }}">
@@ -22,5 +21,14 @@
             <input id="client_name" name="client_name" type="text">
 
             <button type='submit'>Add Client</button>
+        </form>
+
+        <form action="/delete_clients" method="post">
+            <button type="submit">Clear All Clients and Return Home</button>
+        </form>
+
+        <p><a href="/stylists/{{ stylist.getId }}/edit">Edit this stylist.</a></p>
+
+        <p><a href="/">Home</a></p>
     </body>
 </html>

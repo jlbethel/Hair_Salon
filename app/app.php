@@ -46,6 +46,20 @@
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
     });
 
+    //Take user input for clients and post to stylist.html.twig
+    $app->post("/clients", function() use ($app) {
+        $client_name = $_POST['client_name'];
+        $stylist_id = $_POST['stylist_id'];
+        $client = new Client($client_name, $id = null, $stylist_id);
+        $client->save();
+        return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => Client::getAll()));
+    });
+
+    //Clear all clients from stylist page
+    $app->post("/delete_clients", function() use ($app) {
+        Client::deleteAll();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getALL()));
+    });
 
     return $app;
  ?>
