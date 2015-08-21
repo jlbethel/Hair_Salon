@@ -64,9 +64,10 @@
        {
            //Arrange
            $stylist_name = "Big Bird";
-           $stylist_name2 = "Araya Stark";
            $test_stylist = new Stylist($stylist_name);
            $test_stylist-> save();
+
+           $stylist_name2 = "Araya Stark";
            $test_stylist2 = new Stylist($stylist_name2);
            $test_stylist2-> save();
 
@@ -81,11 +82,13 @@
        {
            //Arrange
            $stylist_name = "Big Bird";
-           $stylist_name2 = "Araya Stark";
            $test_stylist = new Stylist($stylist_name);
            $test_stylist-> save();
+
+           $stylist_name2 = "Araya Stark";
            $test_stylist2 = new Stylist($stylist_name2);
            $test_stylist2-> save();
+
 
            //Act
            $result = Stylist::deleteAll();
@@ -100,17 +103,36 @@
        {
            //Arrange
            $stylist_name = "Big Bird";
-           $stylist_name2 = "Araya Stark";
            $test_stylist = new Stylist($stylist_name);
            $test_stylist-> save();
+
+           $stylist_name2 = "Araya Stark";
            $test_stylist2 = new Stylist($stylist_name2);
            $test_stylist2-> save();
+
 
            //Act
            $result = Stylist::find($test_stylist->getId());
 
            //Assert
            $this->assertEquals($test_stylist, $result);
+       }
+
+       function testUpdate()
+       {
+           //Arrange
+           $stylist_name = "Big Bird";
+           $id = null;
+           $test_stylist = new Stylist($stylist_name, $id);
+           $test_stylist->save();
+
+           $new_name = "Araya Stark";
+
+           //Act
+           $test_stylist->update($new_name);
+
+           //Assert
+           $this->assertEquals("Araya Stark", $test_stylist->getStylistName);
        }
 
 
