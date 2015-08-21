@@ -62,5 +62,11 @@
             }
             return $found_stylist;
         }
+
+        function update($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setStylistName($new_name);
+        }
     }
  ?>
