@@ -54,7 +54,7 @@
     $app->post("/clients", function() use ($app) {
         $client_name = $_POST['client_name'];
         $stylist_id = $_POST['stylist_id'];
-        $client = new Client($client_name, $id = null, $stylist_id);
+        $client = new Client($client_name, $stylist_id, $id = null);
         $client->save();
         return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => Client::getAll()));
     });

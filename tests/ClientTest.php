@@ -91,12 +91,14 @@
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($client_name, $stylist_id);
+            var_dump($test_client);
 
             //Act
             $test_client->save();
 
             //Assert
             $result = Client::getAll();
+            var_dump($result);
             $this->assertEquals($test_client, $result[0]);
         }
 

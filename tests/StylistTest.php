@@ -124,14 +124,14 @@
        {
           //Arrange
           $stylist_name = "Big Bird";
-          
           $test_stylist = new Stylist($stylist_name);
           $test_stylist-> save();
-       
+
           $test_stylist_id = $test_stylist->getId();
           $client_name = "Harry Potter";
           $test_client = new Client($client_name, $test_stylist_id);
           $test_client->save();
+
 
           $client_name2 = "Spock";
           $test_client2 = new Client($client_name2, $test_stylist_id);
@@ -139,7 +139,7 @@
 
           //Act
           $result = $test_stylist->getClients();
-          var_dump($result);
+
 
           //Assert
           $this->assertEquals([$test_client, $test_client2], $result);
