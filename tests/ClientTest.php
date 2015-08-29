@@ -9,7 +9,7 @@
 
     $server = 'mysql:host=localhost;dbname=hair_salon_test';
     $username = 'root';
-    $password = 'ff0000k1tten';
+    $password = 'root';
     $DB = new PDO($server, $username, $password);
 
     class ClientTest extends PHPUnit_Framework_TestCase
@@ -59,7 +59,7 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
-        function test_getCategoryId()
+        function test_getStylistId()
         {
             //Arrange
             $stylist_name = "Big Bird";
@@ -69,7 +69,7 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
             $test_client->save();
 
             //Act
@@ -90,7 +90,7 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
 
             //Act
             $test_client->save();
@@ -110,11 +110,11 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
             $test_client->save();
 
             $client_name2 = "Spock";
-            $test_client2 = new Client($client_name2, $id, $stylist_id);
+            $test_client2 = new Client($client_name2, $stylist_id);
             $test_client2->save();
 
             //Act
@@ -134,7 +134,7 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
             $test_client->save();
 
 
@@ -156,11 +156,11 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
             $test_client->save();
 
             $client_name2 = "Spock";
-            $test_client2 = new Client($client_name2, $id, $stylist_id);
+            $test_client2 = new Client($client_name2, $stylist_id);
             $test_client2->save();
 
             //Act
@@ -180,7 +180,7 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
             $test_client->save();
 
             $new_name = "Spock";
@@ -204,11 +204,11 @@
 
             $client_name = "Harry Potter";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client_name, $id, $stylist_id);
+            $test_client = new Client($client_name, $stylist_id);
             $test_client->save();
 
             $client_name2 = "Spock";
-            $test_client2 = new Client($client_name2, $id, $stylist_id);
+            $test_client2 = new Client($client_name2, $stylist_id);
             $test_client2->save();
 
             //Act

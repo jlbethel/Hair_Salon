@@ -5,11 +5,11 @@
         private $id;
         private $stylist_id;
 
-        function __construct($client_name, $id = null, $stylist_id)
+        function __construct($client_name, $stylist_id, $id = null)
         {
             $this->client_name = $client_name;
-            $this->id = $id;
             $this->stylist_id = $stylist_id;
+            $this->id = $id;
         }
 
         function setClientName($new_name)
@@ -46,7 +46,7 @@
                 $client_name = $client['client_name'];
                 $id = $client['id'];
                 $stylist_id = $client['stylist_id'];
-                $new_client = new Client($client_name, $id, $stylist_id);
+                $new_client = new Client($client_name, $stylist_id, $id);
                 array_push($clients, $new_client);
             }
             return $clients;

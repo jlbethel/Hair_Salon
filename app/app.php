@@ -14,7 +14,7 @@
     //Set path to MySQL
     $server = 'mysql:host=localhost;dbname=hair_salon';
     $username = 'root';
-    $password = 'ff0000k1tten';
+    $password = 'root';
     $DB = new PDO($server, $username, $password);
 
     //Configuration to allow _method input to work

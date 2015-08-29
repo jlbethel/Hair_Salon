@@ -9,7 +9,7 @@
 
    $server = 'mysql:host=localhost;dbname=hair_salon_test';
    $username = 'root';
-   $password = 'ff0000k1tten';
+   $password = 'root';
    $DB = new PDO($server, $username, $password);
 
    class StylistTest extends PHPUnit_Framework_TestCase
@@ -128,15 +128,19 @@
            $test_stylist = new Stylist($stylist_name, $id);
            $test_stylist->save();
 
-           $test_stylist_id = $test_stylist->getId();
-
            $client_name = "Harry Potter";
            $test_client = new Client($client_name, $id, $test_stylist_id);
            $test_client->save();
 
-           $client_name2 = "Spock";
-           $test_client2 = new Client($client_name2, $id, $test_stylist_id);
-           $test_client2->save();
+           //Act
+           $test_stylist ->addClient($test_client);
+           $result = $test_stylist->getClients();
+
+           //Assert
+           $this->assertEquals($test_client, $result);
+
+
+           
        }
 
        function test_update()
