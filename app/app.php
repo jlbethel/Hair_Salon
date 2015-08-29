@@ -95,10 +95,11 @@
     //Route to allow the client update to work
     $app->patch("/clients/{id}", function($id) use ($app) {
         $client_name = $_POST['client_name'];
-        $stylist_id = $_POST['stylist_id'];
         $client = Client::find($id);
+        $stylist = Stylist::find($id);
         $client->update($client_name);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => $stylist->getClients()));
+
+        return $app['twig']->render('client_edit.html.twig', array('clients' => $client, 'stylist' => $stylist));
     });
 
 
