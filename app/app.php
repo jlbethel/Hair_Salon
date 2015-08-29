@@ -102,6 +102,12 @@
         return $app['twig']->render('client_edit.html.twig', array('clients' => $client, 'stylist' => $stylist));
     });
 
+    $app->delete("/delete_clients/{id}", function($id) use ($app) {
+        $client = Client::find($id);
+        $stylist = Stylist::find($client->getStylistID());
+        $client->delete();
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
 
     return $app;
  ?>
