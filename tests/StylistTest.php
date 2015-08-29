@@ -122,25 +122,28 @@
 
        function test_GetClients()
        {
-           //Arrange
-           $stylist_name = "Big Bird";
-           $id = null;
-           $test_stylist = new Stylist($stylist_name, $id);
-           $test_stylist->save();
+          //Arrange
+          $stylist_name = "Big Bird";
+          
+          $test_stylist = new Stylist($stylist_name);
+          $test_stylist-> save();
+       
+          $test_stylist_id = $test_stylist->getId();
+          $client_name = "Harry Potter";
+          $test_client = new Client($client_name, $test_stylist_id);
+          $test_client->save();
 
-           $client_name = "Harry Potter";
-           $test_client = new Client($client_name, $id, $test_stylist_id);
-           $test_client->save();
+          $client_name2 = "Spock";
+          $test_client2 = new Client($client_name2, $test_stylist_id);
+          $test_client2->save();
 
-           //Act
-           $test_stylist ->addClient($test_client);
-           $result = $test_stylist->getClients();
+          //Act
+          $result = $test_stylist->getClients();
+          var_dump($result);
 
-           //Assert
-           $this->assertEquals($test_client, $result);
+          //Assert
+          $this->assertEquals([$test_client, $test_client2], $result);
 
-
-           
        }
 
        function test_update()
