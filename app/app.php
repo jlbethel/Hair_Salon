@@ -63,6 +63,7 @@
     //Clear all clients from stylist page and return home
     $app->post("/delete_clients", function() use ($app) {
         Client::deleteAll();
+
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
@@ -101,10 +102,10 @@
 
         return $app['twig']->render('client_edit.html.twig', array('clients' => $client, 'stylist' => $stylist));
     });
-
+    //
     $app->delete("/delete_clients/{id}", function($id) use ($app) {
         $client = Client::find($id);
-        $stylist = Stylist::find($client->getStylistID());
+        $stylist = Stylist::find($client->getStylistId());
         $client->delete();
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
