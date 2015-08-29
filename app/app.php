@@ -47,16 +47,17 @@
     //Path from stylist links on homepage to stylist.html.twig
     $app->get("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     //Take user input for clients and post to stylist.html.twig
-    $app->post("/clients", function() use ($app) {
+    $app->post("/add_clients", function() use ($app) {
         $client_name = $_POST['client_name'];
         $stylist_id = $_POST['stylist_id'];
         $client = new Client($client_name, $stylist_id, $id = null);
         $client->save();
-        return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => Client::getAll()));
+        $stylist = Stylist::find($stylist_id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => $stylist->getClients()));
     });
 
     //Clear all clients from stylist page and return home
@@ -94,12 +95,12 @@
     //Route to allow the client update to work
     $app->patch("/clients/{id}", function($id) use ($app) {
         $client_name = $_POST['client_name'];
+        $stylist_id = $_POST['stylist_id'];
         $client = Client::find($id);
         $client->update($client_name);
         return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => $stylist->getClients()));
     });
 
-    //There are a few bugs that still need fixing, but I ran out of time. Will work on them and resubmit.
 
     return $app;
  ?>
