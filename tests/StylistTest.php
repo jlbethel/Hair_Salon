@@ -9,7 +9,7 @@
 
    $server = 'mysql:host=localhost;dbname=hair_salon_test';
    $username = 'root';
-   $password = 'root';
+   $password = 'ff0000k1tten';
    $DB = new PDO($server, $username, $password);
 
    class StylistTest extends PHPUnit_Framework_TestCase

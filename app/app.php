@@ -14,7 +14,7 @@
     //Set path to MySQL
     $server = 'mysql:host=localhost;dbname=hair_salon';
     $username = 'root';
-    $password = 'root';
+    $password = 'ff0000k1tten';
     $DB = new PDO($server, $username, $password);
 
     //Configuration to allow _method input to work
@@ -96,7 +96,7 @@
         $client_name = $_POST['client_name'];
         $client = Client::find($id);
         $client->update($client_name);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylist' => Stylist::find($stylist_id), 'clients' => $stylist->getClients()));
     });
 
     //There are a few bugs that still need fixing, but I ran out of time. Will work on them and resubmit.
